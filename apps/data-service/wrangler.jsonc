@@ -24,5 +24,12 @@
 			"id": "0853cbf4c6204230909415d93beecef9",
 			"remote": true
 		}
-	]
+	],
+	"queues": {
+		"consumers": [
+			{
+				"queue": "click-audit-data-queue-stage"
+			}
+		]
+	}
 }

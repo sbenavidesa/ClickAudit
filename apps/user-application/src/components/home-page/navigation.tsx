@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { LoginPopup } from "@/components/auth/login-popup";
 import { UserCircle } from "@/components/auth/user-icon";
+import {IconPointerCheck} from "@tabler/icons-react";
+
 // import { authClient } from "@/components/auth/client";
 
 export function Navigation() {
@@ -16,9 +18,9 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           {/* Company Logo/Name */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">
-                SL
+                <IconPointerCheck className="!size-5 ![transform:scaleX(-1)]" />
               </span>
             </div>
             <span className="font-semibold text-foreground">ClickAudit</span>

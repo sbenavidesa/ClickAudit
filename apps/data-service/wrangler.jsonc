@@ -30,6 +30,12 @@
 			{
 				"queue": "click-audit-data-queue-stage"
 			}
+		],
+		"producers": [
+			{
+				"binding": "QUEUE",
+				"queue": "click-audit-data-queue-stage"
+			}
 		]
 	}
 }

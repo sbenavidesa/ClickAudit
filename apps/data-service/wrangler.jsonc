@@ -4,11 +4,18 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "data-service",
+	"name": "clickaudit-service",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-06-17",
 	"compatibility_flags": ["nodejs_compat"],
 	"observability": {
 		"enabled": true,
 	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_id": "5c254941-45b7-4801-8256-821b319f0f39",
+			"remote": true
+		}
+	]
 }

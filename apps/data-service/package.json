@@ -4,14 +4,14 @@
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
-		"dev": "wrangler dev --x-remote-bindings",
+		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",
 		"cf-typegen": "wrangler types --env-interface BaseEnv"
 	},
 	"devDependencies": {
 		"@cloudflare/puppeteer": "^1.0.3",
-		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"@cloudflare/vitest-pool-workers": "^0.8.47",
 		"@types/node": "^22.15.19",
 		"typescript": "^5.5.2",
 		"vitest": "~3.2.0",

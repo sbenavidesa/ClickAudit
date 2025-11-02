@@ -9,7 +9,7 @@
 	"compatibility_date": "2025-06-17",
 	"compatibility_flags": ["nodejs_compat"],
 	"observability": {
-		"enabled": true,
+		"enabled": true
 	},
 	"d1_databases": [
 		{
@@ -37,8 +37,14 @@
 				"queue": "click-audit-data-queue-stage"
 			}
 		]
+	},
+	"browser": {
+		"binding": "VIRTUAL_BROWSER"
+	},
+	"ai": {
+		"binding": "AI"
 	}
-//	"durable_objects": {
+	//	"durable_objects": {
 //		"bindings": [
 //			{
 //				"class_name": "LinkClickTracker",

@@ -1,26 +1,29 @@
 import { WorkerEntrypoint } from 'cloudflare:workers';
-import {App} from "@/hono/app";
-import {ExecutionContext} from "hono";
-import {initDatabase} from "@repo/data-ops/database";
+import { App } from './hono/app';
+import { initDatabase } from '@repo/data-ops/database';
 import { QueueMessageSchema } from '@repo/data-ops/zod-schema/queue';
-import {handleLinkClick} from "@/queue-handlers/link-clicks";
+import { handleLinkClick } from './queue-handlers/link-clicks';
+export { DestinationEvaluationWorkflow} from '@/workflows/destination-evalutation-workflow';
+// export { EvaluationScheduler} from "@/durable-objects/evaluation-scheduler";
+// export { LinkClickTracker } from "@/durable-objects/link-click-tracker";
 
 export default class DataService extends WorkerEntrypoint<Env> {
 	constructor(ctx: ExecutionContext, env: Env) {
-		super(ctx, env);
-		initDatabase(env.DB);
+		super(ctx, env)
+		initDatabase(env.DB)
 	}
 
 	fetch(request: Request) {
 		return App.fetch(request, this.env, this.ctx)
 	}
+
 	async queue(batch: MessageBatch<unknown>){
+
 		for (const message of batch.messages) {
 			const parsedEvent = QueueMessageSchema.safeParse(message.body);
 			if (parsedEvent.success) {
 				const event = parsedEvent.data;
 				if (event.type === "LINK_CLICK") {
-					console.log(`[${event.data.accountId}] ${event.data}`);
 					await handleLinkClick(this.env, event)
 				}
 			} else {
@@ -28,4 +31,5 @@ export default class DataService extends WorkerEntrypoint<Env> {
 			}
 		}
 	}
+
 }

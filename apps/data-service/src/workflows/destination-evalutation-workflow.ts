@@ -45,9 +45,9 @@ export class DestinationEvaluationWorkflow extends WorkflowEntrypoint<Env, Desti
 			const screenshotBase64 = collectedData.screenshotDataUrl.replace(/^data:image\/png;base64,/, '');
 			const screenshotBuffer = Buffer.from(screenshotBase64, 'base64');
 
-			// await this.env.BUCKET.put(r2PathHtml, collectedData.html);
-			// await this.env.BUCKET.put(r2PathBodyText, collectedData.bodyText);
-			// await this.env.BUCKET.put(r2PathScreenshot, screenshotBuffer);
+			await this.env.BUCKET.put(r2PathHtml, collectedData.html);
+			await this.env.BUCKET.put(r2PathBodyText, collectedData.bodyText);
+			await this.env.BUCKET.put(r2PathScreenshot, screenshotBuffer);
 		});
 	}
 }

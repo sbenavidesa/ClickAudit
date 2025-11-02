@@ -26,13 +26,13 @@ export class DestinationEvaluationWorkflow extends WorkflowEntrypoint<Env, Desti
 		);
 
 		const evaluationId = await step.do('Save evaluation in database', async () => {
-			// return await addEvaluation({
-			// 	linkId: event.payload.linkId,
-			// 	status: aiStatus.status,
-			// 	reason: aiStatus.statusReason,
-			// 	accountId: event.payload.accountId,
-			// 	destinationUrl: event.payload.destinationUrl,
-			// });
+			return await addEvaluation({
+				linkId: event.payload.linkId,
+				status: aiStatus.status,
+				reason: aiStatus.statusReason,
+				accountId: event.payload.accountId,
+				destinationUrl: event.payload.destinationUrl,
+			});
 		});
 
 		await step.do('Backup destination HTML in R2', async () => {

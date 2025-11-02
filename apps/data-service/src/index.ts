@@ -2,6 +2,8 @@ import { WorkerEntrypoint } from 'cloudflare:workers';
 import {App} from "@/hono/app";
 import {ExecutionContext} from "hono";
 import {initDatabase} from "@repo/data-ops/database";
+import { QueueMessageSchema } from '@repo/data-ops/zod-schema/queue';
+import {handleLinkClick} from "@/queue-handlers/link-clicks";
 
 export default class DataService extends WorkerEntrypoint<Env> {
 	constructor(ctx: ExecutionContext, env: Env) {
@@ -12,9 +14,18 @@ export default class DataService extends WorkerEntrypoint<Env> {
 	fetch(request: Request) {
 		return App.fetch(request, this.env, this.ctx)
 	}
-	async queue(batch: MessageBatch<unknown>) {
-		for(const message of batch.messages) {
-			console.log("Queue Event: ", message.body);
+	async queue(batch: MessageBatch<unknown>){
+		for (const message of batch.messages) {
+			const parsedEvent = QueueMessageSchema.safeParse(message.body);
+			if (parsedEvent.success) {
+				const event = parsedEvent.data;
+				if (event.type === "LINK_CLICK") {
+					console.log(`[${event.data.accountId}] ${event.data}`);
+					await handleLinkClick(this.env, event)
+				}
+			} else {
+				console.error(parsedEvent.error)
+			}
 		}
 	}
 }

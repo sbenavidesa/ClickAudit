@@ -101,6 +101,7 @@ export async function updateLinkDestinations(
 }
 
 export async function addLinkClick(info: LinkClickMessageType["data"]) {
+    console.log("ENTERED", info);
     const db = getDb();
     await db.insert(linkClicks).values({
         id: info.id,

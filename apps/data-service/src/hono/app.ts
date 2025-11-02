@@ -39,8 +39,8 @@ App.get('/r/:id', async (c) => {
 			timestamp: new Date().toISOString()
 		}
 	}
-	// c.executionCtx.waitUntil(
-	// 	captureLinkClickInBackground(c.env, queueMessage)
-	// )
+	c.executionCtx.waitUntil(
+		c.env.QUEUE.send(queueMessage)
+	)
 	return c.redirect(destination)
 })

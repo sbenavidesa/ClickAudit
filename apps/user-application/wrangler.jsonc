@@ -16,21 +16,35 @@
   },
   "env": {
     "stage": {
+
       "d1_databases": [
         {
           "binding": "DB",
           "database_id": "5c254941-45b7-4801-8256-821b319f0f39",
-          "remote": true
-        }
+          "remote": true,
+        },
       ],
       "services": [
         {
           "binding": "BACKEND_SERVICE",
           "service": "click-audit-service-stage",
-          "remote": true
-        }
-      ]
-    }
+          "remote": true,
+        },
+      ],
+    },
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "fd25b4ef-346d-4e12-a43e-011de50583e4",
+        },
+      ],
+      "services": [
+        {
+          "binding": "BACKEND_SERVICE",
+          "service": "click-audit-service-production",
+        },
+      ],
+    },
   }
-
 }

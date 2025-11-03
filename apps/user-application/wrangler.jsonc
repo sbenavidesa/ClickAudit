@@ -20,5 +20,12 @@
       "database_id": "5c254941-45b7-4801-8256-821b319f0f39",
       "remote": true
     }
+  ],
+  "services": [
+    {
+      "binding": "BACKEND_SERVICE",
+      "service": "clickaudit-service",
+      "remote": true
+    }
   ]
 }

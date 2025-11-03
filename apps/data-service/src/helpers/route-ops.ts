@@ -54,17 +54,17 @@ export function getDestinationForCountry(linkInfo: LinkSchemaType, countryCode?:
 }
 
 
-// export async function scheduleEvalWorkflow(env: Env, event: LinkClickMessageType) {
-// 	const doId = env.EVALUATION_SCHEDULAR.idFromName(`${event.data.id}:${event.data.destination}`);
-// 	const stub = env.EVALUATION_SCHEDULAR.get(doId);
-// 	await stub.collectLinkClick(
-// 		event.data.accountId,
-// 		event.data.id,
-// 		event.data.destination,
-// 		event.data.country || "UNKNOWN"
-// 	)
-// }
-//
+export async function scheduleEvalWorkflow(env: Env, event: LinkClickMessageType) {
+	const doId = env.EVALUATION_SCHEDULAR.idFromName(`${event.data.id}:${event.data.destination}`);
+	const stub = env.EVALUATION_SCHEDULAR.get(doId);
+	await stub.collectLinkClick(
+		event.data.accountId,
+		event.data.id,
+		event.data.destination,
+		event.data.country || "UNKNOWN"
+	)
+}
+
 // export async function captureLinkClickInBackground(env: Env, event: LinkClickMessageType) {
 // 	await env.QUEUE.send(event)
 // 	const doId = env.LINK_CLICK_TRACKER_OBJECT.idFromName(event.data.accountId);

@@ -4,28 +4,33 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "clickaudit-app",
+  "name": "click-audit-app",
   "main": "worker/index.ts",
   "compatibility_date": "2025-06-17",
   "assets": {
     "binding": "ASSETS",
-    "not_found_handling": "single-page-application",
+    "not_found_handling": "single-page-application"
   },
   "observability": {
-    "enabled": true,
+    "enabled": true
   },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_id": "5c254941-45b7-4801-8256-821b319f0f39",
-      "remote": true
+  "env": {
+    "stage": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "5c254941-45b7-4801-8256-821b319f0f39",
+          "remote": true
+        }
+      ],
+      "services": [
+        {
+          "binding": "BACKEND_SERVICE",
+          "service": "click-audit-service-stage",
+          "remote": true
+        }
+      ]
     }
-  ],
-  "services": [
-    {
-      "binding": "BACKEND_SERVICE",
-      "service": "clickaudit-service",
-      "remote": true
-    }
-  ]
+  }
+
 }

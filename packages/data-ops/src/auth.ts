@@ -42,7 +42,7 @@ export function createBetterAuth(
         stripeClient: new Stripe(
           stripeConfig?.stripeApiKey || process.env.STRIPE_KEY!,
           {
-            apiVersion: "2025-03-31.basil",
+            apiVersion: "2025-07-30.basil",
           },
         ),
         stripeWebhookSecret:
@@ -59,7 +59,7 @@ export function createBetterAuth(
 }
 
 export function getAuth(
-  google: { clientId: string; clientSecret: string },
+  github: { clientId: string; clientSecret: string },
   stripe: StripeConfig,
   secret: string,
 ): ReturnType<typeof betterAuth> {
@@ -78,7 +78,7 @@ export function getAuth(
     }),
     secret,
     stripe,
-    google,
+    github,
   );
   return auth;
 }

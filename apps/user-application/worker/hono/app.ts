@@ -74,7 +74,12 @@ App.get("/click-socket", authMiddleware, async (c) => {
 });
 
 App.on(["POST", "GET"], "/api/auth/*", async (c) => {
-  const auth = getAuthInstance(c.env)
-  const tmp = await auth.handler(c.req.raw);
-  console.log("\"🔥AUTH: \"", tmp)
+    try {
+        const auth = getAuthInstance(c.env);
+        const response = await auth.handler(c.req.raw);
+        return response;
+    } catch (error) {
+        console.error("🔥 AUTH HANDLER ERROR:", error);
+        return c.json({ message: "Internal Auth Error", error: error?.message }, 500);
+    }
 });

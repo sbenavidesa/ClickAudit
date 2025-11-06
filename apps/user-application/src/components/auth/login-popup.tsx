@@ -19,14 +19,31 @@ interface LoginPopupProps {
 
 export function LoginPopup({ children }: LoginPopupProps) {
   const [loading, setLoading] = useState(false);
-  const signInWithGithub = async () => {
-    setLoading(true);
-    await authClient.signIn.social({
-      provider: "github",
-      callbackURL: "/app",
-    });
-    setLoading(false);
-  };
+    const signInWithGithub = async () => {
+        setLoading(true);
+        try {
+            const response = await authClient.signIn.social({
+                provider: "github",
+                callbackURL: "/app",
+            });
+
+            // Type guard: check if 'url' exists
+            if ("url" in response && response.url) {
+                // @ts-ignore
+                window.location.href = response.url;
+            } else if ("user" in response) {
+                // Already signed in? Maybe redirect manually
+                window.location.href = "/app";
+            } else {
+                throw new Error("Unexpected auth response");
+            }
+        } catch (error) {
+            console.error("GitHub sign-in error:", error);
+            // Handle error (e.g., toast)
+        } finally {
+            setLoading(false);
+        }
+    };
 
   return (
     <Dialog>

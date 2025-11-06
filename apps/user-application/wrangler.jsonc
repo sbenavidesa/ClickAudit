@@ -1,0 +1,56 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "click-audit-app",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-06-17",
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/auth/*", "/trpc/*", "/click-socket"]
+  },
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "stage": {
+      "vars": {
+        "STRIPE_PRODUCT_BASIC": "price_1SPoOCFQxANz59GflcPoEASJ",
+        "STRIPE_PRODUCT_PRO": "price_1SPoOCFQxANz59GflcPoEASJ",
+        "STRIPE_PRODUCT_ENTERPRISE": "price_1SPoOCFQxANz59GflcPoEASJ",
+        "GITHUB_CLIENT_ID": "Ov23liZjvcTLo2pyeDuD"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "4acf12a1-689b-4a41-b1e6-b20488a59e98",
+          "remote": true,
+        },
+      ],
+      "services": [
+        {
+          "binding": "BACKEND_SERVICE",
+          "service": "click-audit-service-stage",
+          "remote": true,
+        },
+      ],
+    },
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "4665aa3b-635e-4602-83d2-225180ed0924",
+        },
+      ],
+      "services": [
+        {
+          "binding": "BACKEND_SERVICE",
+          "service": "click-audit-service-production",
+        },
+      ],
+    },
+  }
+}

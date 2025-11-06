@@ -54,6 +54,6 @@
           "service": "click-audit-service-production",
         },
       ],
-    },
+    }
   }
 }

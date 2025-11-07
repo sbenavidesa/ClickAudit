@@ -80,6 +80,6 @@ App.on(["POST", "GET"], "/api/auth/*", async (c) => {
         return response;
     } catch (error) {
         console.error("🔥 AUTH HANDLER ERROR:", error);
-        return c.json({ message: "Internal Auth Error", error: error?.message }, 500);
+        return c.json({ message: "Internal Auth Error", error: JSON.stringify(error)}, 500);
     }
 });

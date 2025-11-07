@@ -11,7 +11,6 @@ export const App = new Hono<{
 }>();
 
 const getAuthInstance = (env: Env) => {
-    console.log("👀HERE ->: ", JSON.stringify(env));
   return getAuth(
     {
       clientId: env.GITHUB_CLIENT_ID,
@@ -74,13 +73,7 @@ App.get("/click-socket", authMiddleware, async (c) => {
   return c.env.BACKEND_SERVICE.fetch(proxiedRequest);
 });
 
-App.on(["POST", "GET"], "/api/auth/*", async (c) => {
-    try {
-        const auth = getAuthInstance(c.env);
-        const response = await auth.handler(c.req.raw);
-        return response;
-    } catch (error) {
-        console.error("🔥 AUTH HANDLER ERROR:", error);
-        return c.json({ message: "Internal Auth Error", error: JSON.stringify(error)}, 500);
-    }
+App.on(["POST", "GET"], "/api/auth/*", (c) => {
+  const auth = getAuthInstance(c.env);
+  return auth.handler(c.req.raw);
 });

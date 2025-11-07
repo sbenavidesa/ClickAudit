@@ -41,7 +41,7 @@ export function HeroSection() {
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Smart link management with AI monitoring and geo-routing that keeps
+            Link management with AI monitoring and geo-routing that keeps
             your traffic flowing and revenue growing.
           </p>
 

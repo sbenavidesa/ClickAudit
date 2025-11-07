@@ -11,7 +11,7 @@ import { Link, Globe, Shield, BarChart3, Zap, Brain } from "lucide-react";
 const features = [
   {
     icon: Link,
-    title: "Smart Link Creation",
+    title: "Click Audit Creation",
     description:
       "Create beautiful, trackable short links in seconds with custom domains and branded URLs.",
     badge: "Core Feature",

@@ -27,7 +27,7 @@ export function createBetterAuth(
 ): ReturnType<typeof betterAuth> {
   return betterAuth({
     database,
-    secret: secret,
+    apiKey: secret,
     emailAndPassword: {
       enabled: false,
     },

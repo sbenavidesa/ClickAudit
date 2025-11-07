@@ -172,7 +172,6 @@ function RouteComponent() {
             variant="outline"
             size="sm"
             onClick={() => {
-              console.log("First page clicked");
               table.setPageIndex(0);
             }}
             disabled={!table.getCanPreviousPage()}

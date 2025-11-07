@@ -1,26 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { LoginPopup } from "@/components/auth/login-popup";
 import { UserCircle } from "@/components/auth/user-icon";
-// import { authClient } from "@/components/auth/client";
+import { authClient } from "@/components/auth/client";
+import {IconClick} from "@tabler/icons-react";
 
 export function Navigation() {
-  // const { data: user, isPending } = authClient.useSession();
-
-  // Dummy data for auth client
-  const user = { id: "1", name: "John Doe", email: "john@example.com" };
-  const isPending = false;
+  const { data: user, isPending } = authClient.useSession();
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl mx-auto px-4">
-      <div className="bg-background/80 backdrop-blur-md border border-border/50 rounded-full px-6 py-3 shadow-lg">
-        <div className="flex items-center justify-between">
+    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full px-4">
+      <div className="bg-background/80 backdrop-blur-md border border-border/50  px-6 py-3">
+        <div className="flex items-center justify-between  max-w-4xl  mx-auto">
           {/* Company Logo/Name */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+          <div className="flex items-center gap-1">
               <span className="text-primary-foreground font-bold text-sm">
-                SL
+                 <IconClick className="size-6 scale-x-[-1]" />
               </span>
-            </div>
             <span className="font-semibold text-foreground">ClickAudit</span>
           </div>
           {isPending ? (

@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import {IconClick} from "@tabler/icons-react";
 
 export function Footer() {
   return (
@@ -118,15 +119,13 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">
-                SL
+                 <IconClick className="size-6 scale-x-[-1]" />
               </span>
-            </div>
-            <span className="font-semibold">SmartLinks</span>
+            <span className="font-semibold">ClickAudit</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            © 2024 SmartLinks. All rights reserved.
+            © 2025 ClickAudit. All rights reserved.
           </p>
         </div>
       </div>

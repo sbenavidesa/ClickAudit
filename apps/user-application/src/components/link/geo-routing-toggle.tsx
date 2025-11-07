@@ -58,7 +58,6 @@ export function GeoRoutingToggle({
   };
 
   const handleToggle = (checked: boolean) => {
-    console.log("hi", checked);
     if (checked) {
       // Enable geo routing
       setGeoToggle(true);

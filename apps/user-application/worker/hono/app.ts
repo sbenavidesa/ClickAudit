@@ -11,6 +11,7 @@ export const App = new Hono<{
 }>();
 
 const getAuthInstance = (env: Env) => {
+    console.log("👀HERE ->: ", JSON.stringify(env));
   return getAuth(
     {
       clientId: env.GITHUB_CLIENT_ID,
